@@ -71,7 +71,7 @@ public class JBRadioAction extends AnAction implements CustomComponentAction {
         radioButton.setMnemonic(presentation.getMnemonic());
         radioButton.setDisplayedMnemonicIndex(presentation.getDisplayedMnemonicIndex());
         radioButton.setSelected(Boolean.TRUE.equals(presentation.getClientProperty("selected")));
-        radioButton.setEnabled(presentation.isEnabled());
+        radioButton.setEnabled(true);
         radioButton.setVisible(presentation.isVisible());
 
         if (!StringUtil.isEmpty(mActionCommand)) {

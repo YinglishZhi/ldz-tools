@@ -84,9 +84,7 @@ public class JsonParseWindowUi extends BaseWindowUi {
     }
 
     private void showBody(String jsonString) {
-//        jsonParseOutputUi.showPretty(jsonString);
         jsonParseOutputUi.showRaw(jsonString);
-//        jsonParseOutputUi.showTree(jsonString);
     }
 
 }

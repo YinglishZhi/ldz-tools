@@ -173,45 +173,7 @@ public class JsonParseOutputUi {
         return JsonFileType.INSTANCE;
     }
 
-    public void showPretty(String text) {
 
-        try {
-            String prettyJsonString;
-            if (TextUtils.isEmpty(text)) {
-                prettyJsonString = "";
-            } else {
-                prettyJsonString = getPrettyJson(text);
-            }
-
-            WriteCommandAction.runWriteCommandAction(mProject, () -> {
-                Document document = prettyEditor.getDocument();
-                document.setReadOnly(false);
-                document.setText(prettyJsonString);
-                document.setReadOnly(true);
-            });
-            LanguageFileType fileType = getFileType();
-            ((EditorEx) prettyEditor).setHighlighter(createHighlighter(fileType));
-
-        } catch (Exception e) {
-            if (e instanceof JsonSyntaxException) {
-                String message = e.getMessage();
-                if (TextUtils.isEmpty(message) && e.getCause() != null && !TextUtils.isEmpty(e.getCause().getMessage())) {
-                    message = e.getCause().getMessage();
-                }
-                String finalMessage = message;
-                WriteCommandAction.runWriteCommandAction(mProject, () -> {
-                    Document document = prettyEditor.getDocument();
-                    document.setReadOnly(false);
-//                    SubstringHelper.LineData lineData = SubstringHelper.process(text, finalMessage);
-//                    document.setText(text + "\n\n\n" + "Error in line " + lineData.getLineNumber() + ":" + lineData.getLineOffset());
-                    document.setReadOnly(true);
-                });
-                LanguageFileType fileType = getFileType();
-
-                ((EditorEx) prettyEditor).setHighlighter(createHighlighter(fileType));
-            }
-        }
-    }
 
     void showRaw(String text) {
         if (null == text)
@@ -240,22 +202,7 @@ public class JsonParseOutputUi {
         renderer.setLeafIcon(icon);
     }
 
-    private void setEmptyTree() {
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("");
 
-        DefaultTreeModel model = new DefaultTreeModel(root);
-        outputTree.setModel(model);
-    }
-
-    private void expandAllNodes(JTree tree, int startingIndex, int rowCount) {
-        for (int i = startingIndex; i < rowCount; ++i) {
-            tree.expandRow(i);
-        }
-
-        if (tree.getRowCount() != rowCount) {
-            expandAllNodes(tree, rowCount, tree.getRowCount());
-        }
-    }
 
 
 }
