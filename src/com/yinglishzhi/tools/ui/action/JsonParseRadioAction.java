@@ -5,38 +5,41 @@ import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.actionSystem.ex.CustomComponentAction;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.util.ui.UIUtil;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Godwin on 4/21/2018 12:32 PM for json.
+ * Radio Action
  *
- * @author : Godwin Joseph Kurinjikattu
+ * @author LDZ
+ * @date 2020/6/3 5:02 下午
  */
-public class JBRadioAction extends AnAction implements CustomComponentAction {
+public class JsonParseRadioAction extends AnAction implements CustomComponentAction {
+
     private ButtonGroup mButtonGroup;
     private String mActionCommand;
     private ActionListener mActionListener;
     private boolean selected;
 
-    public JBRadioAction(@Nullable String text) {
+    public JsonParseRadioAction(@Nullable String text) {
         this(text, null);
     }
 
-    public JBRadioAction(@Nullable String text, ButtonGroup buttonGroup) {
+    public JsonParseRadioAction(@Nullable String text, ButtonGroup buttonGroup) {
         super(text);
         this.mButtonGroup = buttonGroup;
     }
 
-    public JBRadioAction(String text, String actionCommand, ButtonGroup buttonGroup, ActionListener actionListener) {
+    public JsonParseRadioAction(String text, String actionCommand, ButtonGroup buttonGroup, ActionListener actionListener) {
         this(text, buttonGroup);
         this.mActionCommand = actionCommand;
         this.mActionListener = actionListener;
     }
 
-    public JBRadioAction(String text, String actionCommand, ButtonGroup buttonGroup, ActionListener actionListener, boolean selected) {
+    public JsonParseRadioAction(String text, String actionCommand, ButtonGroup buttonGroup, ActionListener actionListener, boolean selected) {
         this(text, actionCommand, buttonGroup, actionListener);
         this.selected = selected;
     }
@@ -46,12 +49,10 @@ public class JBRadioAction extends AnAction implements CustomComponentAction {
     public JComponent createCustomComponent(Presentation presentation, String place) {
         JRadioButton jRadioButton = new JRadioButton("");
         jRadioButton.addActionListener(e -> {
-            System.out.println("?????");
             JRadioButton radioButton = (JRadioButton) e.getSource();
             ActionToolbar actionToolbar = UIUtil.getParentOfType(ActionToolbar.class, radioButton);
             DataContext dataContext = actionToolbar != null ? actionToolbar.getToolbarDataContext() : DataManager.getInstance().getDataContext(radioButton);
-            JBRadioAction.this.actionPerformed(AnActionEvent.createFromAnAction(JBRadioAction.this, null, "unknown", dataContext));
-            System.out.println("JBRadioAction.createCustomComponent");
+            JsonParseRadioAction.this.actionPerformed(AnActionEvent.createFromAnAction(JsonParseRadioAction.this, null, "unknown", dataContext));
             if (mActionListener != null) {
                 mActionListener.actionPerformed(e);
             }
@@ -62,7 +63,7 @@ public class JBRadioAction extends AnAction implements CustomComponentAction {
     }
 
     @Override
-    public void actionPerformed(AnActionEvent anActionEvent) {
+    public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
     }
 
     protected void updateCustomComponent(JRadioButton radioButton, Presentation presentation) {

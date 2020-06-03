@@ -15,7 +15,7 @@ public class TimeStampWindowUi extends BaseWindowUi {
 
     private JPanel container;
     private JButton button1;
-    private static final Icon HIDE = new ImageIcon(JsonParseWindowUi.class.getResource("/toolWindow/refresh.png"));
+    private static final Icon HIDE = new ImageIcon(JsonParseWindowUi.class.getResource("/icons/tool.png"));
 
     public TimeStampWindowUi(Project project, Disposable disposable, ToolWindow toolWindow) {
         button1.setIcon(HIDE);

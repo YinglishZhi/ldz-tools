@@ -9,8 +9,6 @@ import com.intellij.openapi.editor.event.DocumentEvent;
 import com.intellij.openapi.editor.event.DocumentListener;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
-import com.intellij.psi.PsiDocumentManager;
-import com.intellij.psi.PsiFile;
 import org.apache.http.util.TextUtils;
 
 import javax.swing.*;
@@ -32,10 +30,10 @@ public class JsonParseWindowUi extends BaseWindowUi {
 
     private Editor mInputEditor;
     JsonParseOutputUi jsonParseOutputUi;
-    private static final Icon HIDE = new ImageIcon(JsonParseWindowUi.class.getResource("/icons/jsonParse.png"));
+    private static final Icon JSON_PARSE_ICON = new ImageIcon(JsonParseWindowUi.class.getResource("/icons/json.png"));
 
     public JsonParseWindowUi(Project project, Disposable disposable, ToolWindow toolWindow) {
-        parseButton.setIcon(HIDE);
+        parseButton.setIcon(JSON_PARSE_ICON);
 
         this.mInputEditor = createEditor();
         inputEditorContainer.add(mInputEditor.getComponent(), BorderLayout.CENTER);
