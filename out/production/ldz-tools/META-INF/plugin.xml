@@ -1,0 +1,32 @@
+<idea-plugin>
+    <id>com.your.company.unique.plugin.id</id>
+    <name>some tool for LDZ</name>
+    <version>1.0</version>
+    <vendor email="yinglishzhi@gmail.com">No Company</vendor>
+
+    <description>some tools for our daily develop. e.g. JSON timestamp</description>
+
+    <change-notes>
+        06.03 create the project !!!!!!!!!!! fuck it all!!!!
+    </change-notes>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <toolWindow id="tool-window"
+                    anchor="bottom"
+                    icon="/icons/tool.png"
+                    factoryClass="com.yinglishzhi.tools.ToolsWindowFactory"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+</idea-plugin>
