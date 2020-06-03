@@ -20,7 +20,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <toolWindow id="劉德志专属工具"
-                    anchor="right"
+                    anchor="bottom"
                     icon="/icons/tool.png"
                     factoryClass="com.yinglishzhi.tools.ToolsWindowFactory"/>
     </extensions>
