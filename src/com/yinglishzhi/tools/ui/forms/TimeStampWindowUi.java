@@ -14,11 +14,19 @@ public class TimeStampWindowUi extends BaseWindowUi {
 
 
     private JPanel container;
-    private JButton button1;
+    private JPanel mainPanel;
+    private JLabel nowLabel;
+    private JLabel label1;
+    private JButton control;
+    private JLabel timeStamp;
+    private JLabel Label3;
+    private JTextField nowTimeStamp;
+    private JLabel l;
+    private JButton transfer;
     private static final Icon HIDE = new ImageIcon(JsonParseWindowUi.class.getResource("/icons/tool.png"));
 
     public TimeStampWindowUi(Project project, Disposable disposable, ToolWindow toolWindow) {
-        button1.setIcon(HIDE);
+//        button1.setIcon(HIDE);
     }
 
     @Override
