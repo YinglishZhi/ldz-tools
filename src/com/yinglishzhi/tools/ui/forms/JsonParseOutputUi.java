@@ -27,6 +27,8 @@ import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IElementType;
 import com.yinglishzhi.tools.ui.action.JsonParseRadioAction;
+import com.yinglishzhi.tools.utils.SubstringHelper;
+import org.apache.http.util.TextUtils;
 
 import javax.annotation.Nonnull;
 import javax.swing.*;
@@ -93,6 +95,51 @@ public class JsonParseOutputUi {
         }
     }
 
+    /**
+     * json 显示
+     *
+     * @param text text
+     */
+    public void showPretty(String text) {
+
+        try {
+            String prettyJsonString;
+            if (TextUtils.isEmpty(text)) {
+                prettyJsonString = "";
+            } else {
+                prettyJsonString = getPrettyJson(text);
+            }
+
+            WriteCommandAction.runWriteCommandAction(mProject, () -> {
+                Document document = prettyEditor.getDocument();
+                document.setReadOnly(false);
+                document.setText(prettyJsonString);
+                document.setReadOnly(true);
+            });
+            LanguageFileType fileType = getFileType();
+            ((EditorEx) prettyEditor).setHighlighter(createHighlighter(fileType));
+
+        } catch (Exception e) {
+            if (e instanceof JsonSyntaxException) {
+                String message = e.getMessage();
+                if (TextUtils.isEmpty(message) && e.getCause() != null && !TextUtils.isEmpty(e.getCause().getMessage())) {
+                    message = e.getCause().getMessage();
+                }
+                String finalMessage = message;
+                WriteCommandAction.runWriteCommandAction(mProject, () -> {
+                    Document document = prettyEditor.getDocument();
+                    document.setReadOnly(false);
+                    SubstringHelper.LineData lineData = SubstringHelper.process(text, finalMessage);
+                    document.setText(text + "\n\n\n" + "Error in line " + lineData.getLineNumber() + ":" + lineData.getLineOffset());
+                    document.setReadOnly(true);
+                });
+                LanguageFileType fileType = getFileType();
+
+                ((EditorEx) prettyEditor).setHighlighter(createHighlighter(fileType));
+            }
+        }
+    }
+
     private String getPrettyJson(String jsonString) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser parser = new JsonParser();
@@ -102,6 +149,9 @@ public class JsonParseOutputUi {
 
     // ============================== private ==============================
 
+    private LanguageFileType getFileType(/*Header[] contentTypes*/) {
+        return JsonFileType.INSTANCE;
+    }
 
     private void setUiComponents() {
         simpleToolWindowPanel1 = new SimpleToolWindowPanel(true, true);

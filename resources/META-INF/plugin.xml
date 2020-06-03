@@ -19,8 +19,8 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
-        <toolWindow id="tool-window"
-                    anchor="bottom"
+        <toolWindow id="劉德志专属工具"
+                    anchor="right"
                     icon="/icons/tool.png"
                     factoryClass="com.yinglishzhi.tools.ToolsWindowFactory"/>
     </extensions>
