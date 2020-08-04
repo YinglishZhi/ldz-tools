@@ -7,7 +7,10 @@
     <description>some tools for our daily develop. e.g. JSON timestamp</description>
 
     <change-notes>
-        06.03 create the project !!!!!!!!!!! fuck it all!!!!
+        - 06.03 create the project !!!!!!!!!!! fuck it all!!!!
+        - 06.04 json
+        - 06.04 time time stamp
+        - 06.05 ....
     </change-notes>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
@@ -19,7 +22,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
-        <toolWindow id="劉德志专属工具"
+        <toolWindow id="tool"
                     anchor="bottom"
                     icon="/icons/tool.png"
                     factoryClass="com.yinglishzhi.tools.ToolsWindowFactory"/>
